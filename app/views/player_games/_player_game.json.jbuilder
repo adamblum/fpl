@@ -1,0 +1,2 @@
+json.extract! player_game, :id, :player_id, :position, :team, :cost, :point_last_round, :total_points, :average_points, :yellow_cards, :transfers_out, :yellow_cards, :goals_scored, :saves, :value_season, :transfers_out, :price_rise, :last_season_points, :value_form, :penalties_missed, :form, :bonus, :selected_by_percent, :transfers_in, :minutes_played, :transfers_in_round, :red_cards, :bps, :forecast, :created_at, :updated_at
+json.url player_game_url(player_game, format: :json)

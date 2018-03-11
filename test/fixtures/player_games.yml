@@ -1,0 +1,59 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  player_id: 1
+  position: MyString
+  team: MyString
+  cost: 1
+  point_last_round: 1
+  total_points: 1
+  average_points: 1.5
+  yellow_cards: 1
+  transfers_out: 1
+  yellow_cards: 1
+  goals_scored: 1
+  saves: 1
+  value_season: 1
+  transfers_out: 1
+  price_rise: 1
+  last_season_points: 1
+  value_form: 1
+  penalties_missed: 1
+  form: 1
+  bonus: 1
+  selected_by_percent: 1.5
+  transfers_in: 1
+  minutes_played: 1
+  transfers_in_round: 1
+  red_cards: 1
+  bps: 1
+  forecast: 1.5
+
+two:
+  player_id: 1
+  position: MyString
+  team: MyString
+  cost: 1
+  point_last_round: 1
+  total_points: 1
+  average_points: 1.5
+  yellow_cards: 1
+  transfers_out: 1
+  yellow_cards: 1
+  goals_scored: 1
+  saves: 1
+  value_season: 1
+  transfers_out: 1
+  price_rise: 1
+  last_season_points: 1
+  value_form: 1
+  penalties_missed: 1
+  form: 1
+  bonus: 1
+  selected_by_percent: 1.5
+  transfers_in: 1
+  minutes_played: 1
+  transfers_in_round: 1
+  red_cards: 1
+  bps: 1
+  forecast: 1.5

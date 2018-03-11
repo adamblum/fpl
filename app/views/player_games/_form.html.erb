@@ -1,0 +1,152 @@
+<%= form_with(model: player_game, local: true) do |form| %>
+  <% if player_game.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(player_game.errors.count, "error") %> prohibited this player_game from being saved:</h2>
+
+      <ul>
+      <% player_game.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :player_id %>
+    <%= form.number_field :player_id, id: :player_game_player_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :position %>
+    <%= form.text_field :position, id: :player_game_position %>
+  </div>
+
+  <div class="field">
+    <%= form.label :team %>
+    <%= form.text_field :team, id: :player_game_team %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cost %>
+    <%= form.number_field :cost, id: :player_game_cost %>
+  </div>
+
+  <div class="field">
+    <%= form.label :point_last_round %>
+    <%= form.number_field :point_last_round, id: :player_game_point_last_round %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_points %>
+    <%= form.number_field :total_points, id: :player_game_total_points %>
+  </div>
+
+  <div class="field">
+    <%= form.label :average_points %>
+    <%= form.text_field :average_points, id: :player_game_average_points %>
+  </div>
+
+  <div class="field">
+    <%= form.label :yellow_cards %>
+    <%= form.number_field :yellow_cards, id: :player_game_yellow_cards %>
+  </div>
+
+  <div class="field">
+    <%= form.label :transfers_out %>
+    <%= form.number_field :transfers_out, id: :player_game_transfers_out %>
+  </div>
+
+  <div class="field">
+    <%= form.label :yellow_cards %>
+    <%= form.number_field :yellow_cards, id: :player_game_yellow_cards %>
+  </div>
+
+  <div class="field">
+    <%= form.label :goals_scored %>
+    <%= form.number_field :goals_scored, id: :player_game_goals_scored %>
+  </div>
+
+  <div class="field">
+    <%= form.label :saves %>
+    <%= form.number_field :saves, id: :player_game_saves %>
+  </div>
+
+  <div class="field">
+    <%= form.label :value_season %>
+    <%= form.number_field :value_season, id: :player_game_value_season %>
+  </div>
+
+  <div class="field">
+    <%= form.label :transfers_out %>
+    <%= form.number_field :transfers_out, id: :player_game_transfers_out %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price_rise %>
+    <%= form.number_field :price_rise, id: :player_game_price_rise %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_season_points %>
+    <%= form.number_field :last_season_points, id: :player_game_last_season_points %>
+  </div>
+
+  <div class="field">
+    <%= form.label :value_form %>
+    <%= form.number_field :value_form, id: :player_game_value_form %>
+  </div>
+
+  <div class="field">
+    <%= form.label :penalties_missed %>
+    <%= form.number_field :penalties_missed, id: :player_game_penalties_missed %>
+  </div>
+
+  <div class="field">
+    <%= form.label :form %>
+    <%= form.number_field :form, id: :player_game_form %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bonus %>
+    <%= form.number_field :bonus, id: :player_game_bonus %>
+  </div>
+
+  <div class="field">
+    <%= form.label :selected_by_percent %>
+    <%= form.text_field :selected_by_percent, id: :player_game_selected_by_percent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :transfers_in %>
+    <%= form.number_field :transfers_in, id: :player_game_transfers_in %>
+  </div>
+
+  <div class="field">
+    <%= form.label :minutes_played %>
+    <%= form.number_field :minutes_played, id: :player_game_minutes_played %>
+  </div>
+
+  <div class="field">
+    <%= form.label :transfers_in_round %>
+    <%= form.number_field :transfers_in_round, id: :player_game_transfers_in_round %>
+  </div>
+
+  <div class="field">
+    <%= form.label :red_cards %>
+    <%= form.number_field :red_cards, id: :player_game_red_cards %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bps %>
+    <%= form.number_field :bps, id: :player_game_bps %>
+  </div>
+
+  <div class="field">
+    <%= form.label :forecast %>
+    <%= form.text_field :forecast, id: :player_game_forecast %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

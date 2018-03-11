@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Player Games</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Position</th>
+      <th>Team</th>
+      <th>Cost</th>
+      <th>Point last round</th>
+      <th>Total points</th>
+      <th>Average points</th>
+      <th>Yellow cards</th>
+      <th>Transfers out</th>
+      <th>Yellow cards</th>
+      <th>Goals scored</th>
+      <th>Saves</th>
+      <th>Value season</th>
+      <th>Transfers out</th>
+      <th>Price rise</th>
+      <th>Last season points</th>
+      <th>Value form</th>
+      <th>Penalties missed</th>
+      <th>Form</th>
+      <th>Bonus</th>
+      <th>Selected by percent</th>
+      <th>Transfers in</th>
+      <th>Minutes played</th>
+      <th>Transfers in round</th>
+      <th>Red cards</th>
+      <th>Bps</th>
+      <th>Forecast</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @player_games.each do |player_game| %>
+      <tr>
+        <td><%= player_game.player_id %></td>
+        <td><%= player_game.position %></td>
+        <td><%= player_game.team %></td>
+        <td><%= player_game.cost %></td>
+        <td><%= player_game.point_last_round %></td>
+        <td><%= player_game.total_points %></td>
+        <td><%= player_game.average_points %></td>
+        <td><%= player_game.yellow_cards %></td>
+        <td><%= player_game.transfers_out %></td>
+        <td><%= player_game.yellow_cards %></td>
+        <td><%= player_game.goals_scored %></td>
+        <td><%= player_game.saves %></td>
+        <td><%= player_game.value_season %></td>
+        <td><%= player_game.transfers_out %></td>
+        <td><%= player_game.price_rise %></td>
+        <td><%= player_game.last_season_points %></td>
+        <td><%= player_game.value_form %></td>
+        <td><%= player_game.penalties_missed %></td>
+        <td><%= player_game.form %></td>
+        <td><%= player_game.bonus %></td>
+        <td><%= player_game.selected_by_percent %></td>
+        <td><%= player_game.transfers_in %></td>
+        <td><%= player_game.minutes_played %></td>
+        <td><%= player_game.transfers_in_round %></td>
+        <td><%= player_game.red_cards %></td>
+        <td><%= player_game.bps %></td>
+        <td><%= player_game.forecast %></td>
+        <td><%= link_to 'Show', player_game %></td>
+        <td><%= link_to 'Edit', edit_player_game_path(player_game) %></td>
+        <td><%= link_to 'Destroy', player_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Player Game', new_player_game_path %>
