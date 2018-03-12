@@ -6,13 +6,14 @@ task :import => :environment do
     next if item == '.' or item == '..'
     p "File #{item}"
     week=item[-2..-1].to_i  # grab the week from the last two characters
+    season=item[3..4].to_i # 4th and 5th characters have the season
     CSV.foreach(item,:headers=>true) do |row|
       player=Player.find_or_create_by(first_name: row["FirstName"],surname: row["Surname"])
       p "Player #{player.surname}"
       player.position=row["PositionsList"]
       player.team=row["Team"]
       player.save
-      pg=PlayerGame.find_or_create_by(player_id: player.id,week: week)
+      pg=PlayerGame.find_or_create_by(player_id: player.id,week: week, season: season)
       p "Player game #{player.id}:#{week}"
       pg.position=row["PositionsList"]
       pg.team=row["Team"]
