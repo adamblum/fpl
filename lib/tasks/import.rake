@@ -2,19 +2,24 @@ require 'csv'
 
 desc "Import player games from CSVs"
 task :import => :environment do
-  Dir.glob('./*.csv').select do |item|
-    next if item == '.' or item == '..'
-    p "File #{item}"
-    week=item[-2..-1].to_i  # grab the week from the last two characters
-    season=item[3..4].to_i # 4th and 5th characters have the season
-    CSV.foreach(item,:headers=>true) do |row|
+  Dir.glob('./*.csv').select do |file|
+    next if file == '.' or file == '..'
+    p "File #{file}"
+    file =~ /FPL(\d+)-GW(\d+)/  # grab the week from the last two characters
+    season=$1.to_i # 4th and 5th characters have the season
+    p "Season #{season}"
+    week = $2.to_i
+    p "Week #{week}"
+    CSV.foreach(file,:headers=>true) do |row|
       player=Player.find_or_create_by(first_name: row["FirstName"],surname: row["Surname"])
-      p "Player #{player.surname}"
+      p "Player #{player.surname} #{player.id}"
       player.position=row["PositionsList"]
       player.team=row["Team"]
       player.save
       pg=PlayerGame.find_or_create_by(player_id: player.id,week: week, season: season)
       p "Player game #{player.id}:#{week}"
+      pg.week=week
+      pg.season=season
       pg.position=row["PositionsList"]
       pg.team=row["Team"]
       pg.cost=row["Cost"].to_i/1000
@@ -35,7 +40,26 @@ task :import => :environment do
       pg.transfers_in_round = row["TransfersInRound"]
       pg.red_cards = row["RedCards"]
       pg.bps = row["BPS"]
+      pg.forecast = row["GW#{week+1}Forecast"]
       pg.save
     end
+  end
+end
+
+task :actuals => :environment do
+  PlayerGame.find_each do |pg|
+    p "Putting actuals on #{pg.inspect}"
+    begin
+      p "Searching for player game #{pg.player_id},#{pg.week+1},#{pg.season}"
+      next_game = PlayerGame.where("player_id=? and week=? and season=?",pg.player_id,pg.week+1,pg.season).first
+    rescue
+      next_game = nil
+    end
+    p "Next game #{next_game.inspect}"
+    if next_game
+      p "Set actual to #{next_game.point_last_round}"
+      pg.actual = next_game.point_last_round
+    end
+    pg.save
   end
 end
