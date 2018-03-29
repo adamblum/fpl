@@ -23,11 +23,11 @@ task :import => :environment do
       pg.position=row["PositionsList"]
       pg.team=row["Team"]
       pg.cost=row["Cost"].to_i/1000
-      pg.point_last_round=row["PointsLastRound"]
+      pg.points_last_round=row["PointsLastRound"]
       pg.total_points = row["TotalPoints"]
       pg.average_points = row["AveragePoints"]
       pg.yellow_cards = row["YellowCards"]
-      pg.transfers_out = row["TransferOut"]
+      pg.transfers_out_round = row["TransfersOutRound"]
       pg.price_rise = row["PriceRise"]
       pg.last_season_points = row["LastSeasonPoints"]
       pg.value_form = row["ValueForm"]
@@ -61,5 +61,23 @@ task :actuals => :environment do
       pg.actual = next_game.point_last_round
     end
     pg.save
+  end
+end
+
+task :makecsv => :environment do
+  cols=["Id","PlayerId","Week","Season","Position","Team","Cost","PointsLastRound","YellowCards","TransfersOutRound","PriceRise","ValueForm","Form","Bonus","SelectedByPercent","MinutesPlayed","TransfersInRound"]
+  CSV.open("fpl.csv", "w") do |csv|
+    csv << cols
+    PlayerGame.find_each do |pg|
+      values_cmd="csv << ["
+      cols.each do |col|
+        values_cmd << "pg.#{col},"
+      end
+      values_cmd = values_cmd[0...-1]
+      values_cmd << "]"
+      values_cmd=values_cmd.underscore
+      p "Executing #{values_cmd}"
+      eval values_cmd
+    end
   end
 end
