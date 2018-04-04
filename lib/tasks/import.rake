@@ -40,7 +40,9 @@ task :import => :environment do
       pg.transfers_in_round = row["TransfersInRound"]
       pg.red_cards = row["RedCards"]
       pg.bps = row["BPS"]
+      # this is FantasyOverlord's forecast not Auger's!
       pg.forecast = row["GW#{week+1}Forecast"]
+      pg.actual=-1 # don't have actuals until second pass below!
       pg.save
     end
   end
@@ -58,14 +60,14 @@ task :actuals => :environment do
     p "Next game #{next_game.inspect}"
     if next_game
       p "Set actual to #{next_game.point_last_round}"
-      pg.actual = next_game.point_last_round
+      pg.actual = next_game.points_last_round
     end
     pg.save
   end
 end
 
 task :makecsv => :environment do
-  cols=["Id","PlayerId","Week","Season","Position","Team","Cost","PointsLastRound","YellowCards","TransfersOutRound","PriceRise","ValueForm","Form","Bonus","SelectedByPercent","MinutesPlayed","TransfersInRound"]
+  cols=["Id","PlayerId","Week","Season","Position","Team","Cost","PointsLastRound","YellowCards","TransfersOutRound","PriceRise","ValueForm","Form","Bonus","SelectedByPercent","MinutesPlayed","TransfersInRound","RedCards","BPS","Actual"]
   CSV.open("fpl.csv", "w") do |csv|
     csv << cols
     PlayerGame.find_each do |pg|
